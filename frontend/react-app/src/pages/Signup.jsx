@@ -5,12 +5,14 @@ import "../styles/Signup.css";
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
+    console.log("Username", username)
     // You can add your signup logic here (API call or Firebase)
     navigate("/login"); // redirect to login page after signup
   };
@@ -28,13 +30,13 @@ export default function Signup() {
           required
         />
 
-        {/* <input
+        <input
           type="username"
-          placeholder="Enter your username"
+          placeholder="Enter your Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-        /> */}
+        />
 
         <input
           type="password"
