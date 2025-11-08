@@ -11,7 +11,11 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (login(email, password)) navigate("/patient");
+    if (login(email, password)) {
+      if (email.includes("admin")) navigate("/admin");
+      else if (email.includes("doctor")) navigate("/doctor");
+      else navigate("/patient");
+    }
   };
 
   return (
