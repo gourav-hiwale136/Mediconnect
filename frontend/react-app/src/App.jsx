@@ -9,7 +9,8 @@ import PatientDashboard from "./pages/PatientDashboard";
 import DoctorDashboard from "./pages/DoctorDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-import NotFound from "./pages/NotFound";
+// import NotFound from "./pages/AdminDashboard";
+
 
 function App() {
   return (
@@ -47,7 +48,7 @@ function App() {
             }
           />
 
-          <Route path="*" element={<NotFound />} />
+          
         </Routes>
       </Router>
     </AuthProvider>
