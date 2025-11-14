@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Navigate, useNavigate } from 'react-router-dom';
 import "../styles/Signup.css";
 
 
@@ -10,6 +11,8 @@ const Signup = () => {
     email:"",
     password:"",
   })
+
+  const Navigate = useNavigate()
 
     const handlechange = (e) => {
       setUserdata({ ...Userdata, [e.target.name]: e.target.value });
@@ -22,6 +25,7 @@ const Signup = () => {
         const response = await axios.post("http://localhost:8000/user/signup", Userdata);
         console.log("Signup Successfull", response.data)
         alert("Signup Successfull !")
+        Navigate("/login")
       } catch (error) {
         console.log("Signup Failed", error)
         alert("Error Signup !")
