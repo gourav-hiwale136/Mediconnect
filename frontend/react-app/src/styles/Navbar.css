@@ -16,8 +16,9 @@
 
 .navbar-links {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  gap: 3rem;
+  /* align-items: center; */
+  margin-right: 50px;
 }
 
 .navbar-links a {
