@@ -9,6 +9,7 @@ import PatientDashboard from "./pages/PatientDashboard";
 import DoctorDashboard from "./pages/DoctorDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import "./App.css"
 // import NotFound from "./pages/AdminDashboard";
 
 

@@ -6,7 +6,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="bg-blue-600 h-18 text-white px-6 py-3 shadow-md">
+    <nav className="bg-blue-600 h-fit text-white px-6 py-3 shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <h1 className="text-2xl font-bold py-2.5">MediConnect</h1>
@@ -23,11 +23,11 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link className="hover:text-gray-200" to="/login">
               Login
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link className="hover:text-gray-200" to="/signup">
               Signup

@@ -34,7 +34,7 @@ const Signup = () => {
       
    
   return (
-    <div className="signup-container">
+    <div className="signup-container" >
       <form onSubmit={signFun} className="signup-form">
         <h2>Signup</h2>
         <input type="text"  onChange={handlechange} name='name'  placeholder='User name ...' value={Userdata.name}/>
