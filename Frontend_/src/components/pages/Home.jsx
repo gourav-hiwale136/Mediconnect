@@ -18,19 +18,19 @@ const Home = () => {
       {/* Icons Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
         <div className="bg-white shadow p-6 rounded-xl flex flex-col items-center">
-          <Stethoscope size={40} className="text-blue-600" />
+          <Stethoscope size={80} className="text-blue-600" />
           <h3 className="mt-3 font-semibold text-xl">Doctors</h3>
           <p className="text-gray-500">Find and manage doctor details.</p>
         </div>
 
         <div className="bg-white shadow p-6 rounded-xl flex flex-col items-center">
-          <Users size={40} className="text-green-600" />
+          <Users size={80} className="text-green-600" />
           <h3 className="mt-3 font-semibold text-xl">Patients</h3>
           <p className="text-gray-500">View and manage patient records.</p>
         </div>
 
         <div className="bg-white shadow p-6 rounded-xl flex flex-col items-center">
-          <Calendar size={40} className="text-purple-600" />
+          <Calendar size={80} className="text-purple-600" />
           <h3 className="mt-3 font-semibold text-xl">Appointments</h3>
           <p className="text-gray-500">Book and track appointments.</p>
         </div>
