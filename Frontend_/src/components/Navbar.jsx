@@ -6,8 +6,8 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="bg-blue-600 h-fit text-white px-6 py-3 shadow-md">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <nav className="bg-blue-600 h-fit text-white px-6 py-3 shadow-md sticky top-0 z-50 ">
+      <div className="max-w-7xl mx-auto flex items-center justify-between ">
         {/* Logo */}
         <h1 className="text-2xl font-bold py-2.5">MediConnect</h1>
 
