@@ -6,6 +6,9 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Patients from "./pages/Patients";
 import Dashboard from "./pages/Dashboard";
+import Doctors from "./pages/Doctors"
+import Appointments from "./pages/Appointments";
+
 
 const App = () => {
   return (
@@ -18,6 +21,9 @@ const App = () => {
         <Route path="/patients" element={<Patients />} />
         <Route path="/patients" element={<Patients />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/doctors" element={<Doctors />} />
+        <Route path="/appointments" element={<Appointments />} />
+        {/* <Route path="/doctors" element={<Doctors />} /> */}
       </Routes>
     </div>
   );
