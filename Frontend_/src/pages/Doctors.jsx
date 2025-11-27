@@ -36,59 +36,89 @@ const Doctors = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      {/* <h2>Doctors</h2> */}
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        {/* <thead>
-          <tr>
-            <th>Name</th>
-            <th>Specialization</th>
-            <th>Contact</th>
-            <th>Add</th>
-          </tr>
-        </thead> */}
-        <tbody>
-          <tr>
-            <td>
-              <input
-                type="text"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="Doctors Name"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={form.specialization}
-                onChange={(e) =>
-                  setForm({ ...form, specialization: e.target.value })
-                }
-                placeholder="Specialization"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={form.contact}
-                onChange={(e) => setForm({ ...form, contact: e.target.value })}
-                placeholder="Contact"
-              />
-            </td>
-            <td>
-              <button onClick={handleCreate}>Add</button>
-            </td>
-          </tr>
-          {doctors.map((doc) => (
-            <tr key={doc._id}>
-              <td>{doc.name}</td>
-              <td>{doc.specialization}</td>
-              <td>{doc.contact}</td>
-              <td></td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="p-6 bg-gray-100 min-h-screen ">
+      <div className="max-w-5xl mx-auto bg-white rounded-md shadow">
+        <div className="flex items-center justify-between px-6 py-4 border-b">
+          <h2 className="text-xl font-semibold">Doctors</h2>
+          <button
+            onClick={handleCreate}
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm  font-medium px-4 py-2 rounded-md mr-14"
+          >
+            Add Doctor
+          </button>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead>
+              <tr className="bg-gray-100 text-gray-800 text-sm">
+                <th className="px-6 py-3 font-semibold">Name</th>
+                <th className="px-6 py-3 font-semibold">Specialization</th>
+                <th className="px-6 py-3 font-semibold">Contact</th>
+                <th className="px-6 py-3 font-semibold"></th>
+              </tr>
+            </thead>
+
+            <tbody className="text-sm">
+              {/* input row */}
+              <tr className="border-t">
+                <td className="px-6 py-3">
+                  <input
+                    type="text"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    placeholder="Doctor's Name"
+                    className="w-full border border-gray-300 rounded-md px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </td>
+                <td className="px-6 py-3">
+                  <input
+                    type="text"
+                    value={form.specialization}
+                    onChange={(e) =>
+                      setForm({ ...form, specialization: e.target.value })
+                    }
+                    placeholder="Specialization"
+                    className="w-full border border-gray-300 rounded-md px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </td>
+                <td className="px-6 py-3">
+                  <input
+                    type="text"
+                    value={form.contact}
+                    onChange={(e) =>
+                      setForm({ ...form, contact: e.target.value })
+                    }
+                    placeholder="Contact"
+                    className="w-full border border-gray-300 rounded-md px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </td>
+                <td className="px-6 py-3">
+                  {/* <button
+                    onClick={handleCreate}
+                    className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium px-3 py-1.5 rounded-md"
+                  >
+                    Add
+                  </button> */}
+                </td>
+              </tr>
+
+              {/* data rows */}
+              {doctors.map((doc) => (
+                <tr
+                  key={doc._id}
+                  className="border-t hover:bg-gray-50 transition-colors"
+                >
+                  <td className="px-6 py-3">{doc.name}</td>
+                  <td className="px-6 py-3">{doc.specialization}</td>
+                  <td className="px-6 py-3">{doc.contact}</td>
+                  <td className="px-6 py-3" />
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };

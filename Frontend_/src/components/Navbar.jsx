@@ -33,11 +33,11 @@ const Navbar = () => {
               Signup
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link className="hover:text-gray-200" to="/patients">
               Patients
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link className="hover:text-gray-200" to="/dashboard">
               Dashboard
