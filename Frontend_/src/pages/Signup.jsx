@@ -19,7 +19,7 @@ const Signup = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8000/user/signup",
+        " https://mediconnect-2-3daa.onrender.com/user/signup",
         Userdata
       );
       alert("Signup Successful!");
