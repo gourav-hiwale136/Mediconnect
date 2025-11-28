@@ -7,6 +7,8 @@ const Doctors = () => {
     specialization: "",
     contact: "",
   });
+  // New state for patient inputs (per doctor)
+  const [patientForms, setPatientForms] = useState({});
 
   useEffect(() => {
     fetch("http://localhost:8000/api/doctors")
@@ -35,14 +37,65 @@ const Doctors = () => {
     setForm({ name: "", specialization: "", contact: "" });
   };
 
+  // Handle patient input change for specific doctor
+  const handlePatientInputChange = (doctorId, field, value) => {
+    setPatientForms((prev) => ({
+      ...prev,
+      [doctorId]: {
+        ...prev[doctorId],
+        [field]: value,
+      },
+    }));
+  };
+
+  // Add patient for specific doctor
+  const handleAddPatient = async (doctorId) => {
+    const patientData = patientForms[doctorId];
+    if (!patientData?.name || !patientData?.age) {
+      alert("Enter patient name and age");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:8000/api/patients", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...patientData,
+          doctorId, // Link to this doctor
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.text();
+        alert("Failed to add patient: " + err);
+        return;
+      }
+
+      // Reset patient form for this doctor
+      setPatientForms((prev) => ({
+        ...prev,
+        [doctorId]: { name: "", age: "" },
+      }));
+
+      // Refresh doctors to show updated patient count (if backend populates it)
+      const updatedDoctors = await fetch(
+        "http://localhost:8000/api/doctors"
+      ).then((res) => res.json());
+      setDoctors(updatedDoctors);
+    } catch (error) {
+      alert("Error: " + error.message);
+    }
+  };
+
   return (
-    <div className="p-6 bg-gray-100 min-h-screen ">
+    <div className="p-6 bg-gray-100 min-h-screen">
       <div className="max-w-5xl mx-auto bg-white rounded-md shadow">
         <div className="flex items-center justify-between px-6 py-4 border-b">
           <h2 className="text-xl font-semibold">Doctors</h2>
           <button
             onClick={handleCreate}
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm  font-medium px-4 py-2 rounded-md mr-14"
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-md"
           >
             Add Doctor
           </button>
@@ -94,6 +147,7 @@ const Doctors = () => {
                   />
                 </td>
                 <td className="px-6 py-3">
+                  {/* Add Doctor button here instead of input row */}
                   {/* <button
                     onClick={handleCreate}
                     className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium px-3 py-1.5 rounded-md"
@@ -112,7 +166,51 @@ const Doctors = () => {
                   <td className="px-6 py-3">{doc.name}</td>
                   <td className="px-6 py-3">{doc.specialization}</td>
                   <td className="px-6 py-3">{doc.contact}</td>
-                  <td className="px-6 py-3" />
+                  <td className="px-6 py-3">
+                    {/* Patient input fields for this doctor */}
+                    <div className="space-y-1">
+                      <div className="flex gap-1 mb-1">
+                        <input
+                          type="text"
+                          placeholder="Name"
+                          value={patientForms[doc._id]?.name || ""}
+                          onChange={(e) =>
+                            handlePatientInputChange(
+                              doc._id,
+                              "name",
+                              e.target.value
+                            )
+                          }
+                          className="flex-1 border border-gray-300 rounded-md px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <input
+                          type="number"
+                          placeholder="Age"
+                          value={patientForms[doc._id]?.age || ""}
+                          onChange={(e) =>
+                            handlePatientInputChange(
+                              doc._id,
+                              "age",
+                              e.target.value
+                            )
+                          }
+                          className="w-16 border border-gray-300 rounded-md px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                      <button
+                        onClick={() => handleAddPatient(doc._id)}
+                        className="w-full bg-green-600 hover:bg-green-700 text-white text-xs font-medium py-1 rounded-md"
+                      >
+                        Add Patient
+                      </button>
+                    </div>
+                    {/* Show patient count if available */}
+                    {doc.patients?.length > 0 && (
+                      <div className="text-xs text-gray-500 mt-1">
+                        {doc.patients.length} patient(s)
+                      </div>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
