@@ -40,7 +40,7 @@ const Navbar = () => {
           </li> */}
           <li>
             <Link className="hover:text-gray-200" to="/dashboard">
-              Dashboard
+              AdminD
             </Link>
           </li>
         </ul>

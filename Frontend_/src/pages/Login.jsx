@@ -14,17 +14,28 @@ const Login = () => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
+  // LOGIN FUNCTION (ARROW FUNCTION + ADMIN CHECK)
   const loginFun = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        " https://mediconnect-2-3daa.onrender.com/user/login",
+      const { data } = await axios.post(
+        "http://localhost:8000/user/login",
         userData
       );
+
       alert("Login Successful!");
-      navigate("/dashboard");
+
+      // Save token
+      localStorage.setItem("token", data.token);
+
+      // CHECK IF ADMIN
+      if (data.role === "admin") {
+        navigate("/admin-dashboard");
+      } else {
+        navigate("/patients");
+      }
     } catch (error) {
-      alert("Login Error!");
+      alert(error.response?.data?.message || "Login Error!");
       console.log(error);
     }
   };

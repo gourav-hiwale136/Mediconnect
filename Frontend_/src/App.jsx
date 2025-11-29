@@ -5,7 +5,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Patients from "./pages/Patients";
-import Dashboard from "./pages/Dashboard";
+import ProtectedAdmin from "./components/ProtectedAdmin";
+import AdminDashboard from "./pages/AdminDashboard";
 import Doctors from "./pages/Doctors"
 import Appointments from "./pages/Appointments";
 
@@ -20,9 +21,13 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/patients" element={<Patients />} />
         <Route path="/patients" element={<Patients />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route path="/dashboard" element={<AdminDashboard />} />
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/appointments" element={<Appointments />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/appointments" element={<Appointments />} />
+
         {/* <Route path="/doctors" element={<Doctors />} /> */}
       </Routes>
     </div>
