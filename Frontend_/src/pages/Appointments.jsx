@@ -96,9 +96,9 @@ const Appointments = () => {
     }
   };
 
-  if (loading) {
-    return <div className="p-6">Loading appointments...</div>;
-  }
+  // if (loading) {
+  //   return <div className="p-6">Loading appointments...</div>;
+  // }
 
   const filteredAppointments = appointments.filter((a) => {
     const q = search.toLowerCase();
