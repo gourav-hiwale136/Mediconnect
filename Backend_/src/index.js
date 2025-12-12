@@ -16,6 +16,11 @@ const port=process.env.PORT
 
 connectDb(process.env.Mongo_Url);
 
+
+app.get("/data",(req,res)=>{
+    res.send("hiii")
+})
+
 app.use("/user",UserRouter)
 app.use("/api/appointments", AppointmentRouter);
 app.use("/api/doctors", DoctorRouter)
